@@ -1,0 +1,63 @@
+.sidebar-menu{
+	max-width: 325px;
+    background-color: #132639;
+}
+
+.navigation{
+	margin-top: -40px;
+}
+
+.b1{
+
+    background: url('lib.jpg');
+    background-size: 100%;
+}
+
+.login-box{
+	margin: 0 auto;
+	width: 370px;
+	height: 270px;
+	background-color:white;
+	margin-top: 200px;
+	border-radius: 2px;
+}
+
+.signup-box{
+	margin: 0 auto;
+	width: 370px;
+	height: 330px;
+	background-color:white;
+	margin-top: 170px;
+	border-radius: 2px;
+}
+
+
+.txt1{
+	margin-left: 40px;
+	width: 290px;
+}
+
+.txt2{
+	margin-left: 60px;
+	width: 270px;
+	margin-top: 10px;
+	font-size: 13px;
+}
+
+.login-box-msg{
+	padding: 20px;
+    font-size: 20px;
+}
+
+
+.bookArea{
+	margin-top: 50px;
+}
+
+.table-responsive{
+	margin-top: 20px;
+}
+
+.request{
+	margin: 2px;
+}

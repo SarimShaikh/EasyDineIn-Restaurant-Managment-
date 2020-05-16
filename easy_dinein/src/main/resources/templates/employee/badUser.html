@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Simple Login Form</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.css}"  href="/resources/css/bootstrap.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron" style="margin-top: 35px">
+        <h1 th:text="${param.message[0]}>Error Message</h1>
+        <p>
+            <a class="btn btn-lg btn-primary" th:href="@{/emp-registration}" href="#" role="button">Sign Up »</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

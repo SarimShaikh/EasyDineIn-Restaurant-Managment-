@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{../images/favicon.png}" href="../../static/images/favicon.png">
+
+    <title>Panel - Dishes</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" th:href="@{../css/lib/bootstrap/bootstrap.min.css}"  href="../../static/css/lib/bootstrap/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link th:href="@{../css/helper.css}" href="../../static/css/helper.css" rel="stylesheet">
+    <link th:href="@{../css/style.css}" href="../../static/css/style.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+    <!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style type="text/css">
+    .frm1{
+        border-radius: 5px;
+    }
+</style>
+</head>
+
+<body class="fix-header fix-sidebar">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper">
+        <div th:replace="pannel/fragments/header :: header" >
+        </div>
+        <!-- End header header -->
+        <!-- Left Sidebar  -->
+        <div th:replace="pannel/fragments/sidebar :: sidebar" >
+        </div>
+        <!-- End Left Sidebar  -->
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+            <!-- Bread crumb -->
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-primary">Dishes</h3> </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item active">Dishes</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- End Bread crumb -->
+            <!-- Container fluid  -->
+            <div class="container-fluid">
+                <!-- Start Page Content -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div th:object="${dish}" class="card-body">
+                                <div th:if="${dish != null}" class="card-content">
+                                        <form  th:action="@{/panel/dishes}" method="post" enctype="multipart/form-data">
+                                            <div class="col-sm-8">
+                                                <div class="row">
+                                                    <input type="hidden" th:field="*{id}" />
+                                                    <span class="col-sm-6">
+                                                    <label>Dish Name</label>
+                                                        <input type="text" th:field="*{name}" class="form-control frm1"  placeholder="Dish Name" required>
+                                                        <p class="error-field" th:each="error: ${#fields.errors('name')}" th:text="${error}">Validation error</p>
+                                                    </span>
+                                                    <span class="col-sm-6">
+                                                    <label>Category</label>
+                                                        <select class="form-control frm1">
+                                                            <option>Select Category</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="col-sm-6">
+                                                    <label>Dish Price</label>
+                                                        <input type="text" th:field="*{price}" class="form-control frm1" placeholder="Price" required>
+                                                         <p class="error-field" th:each="error: ${#fields.errors('price')}" th:text="${error}">Validation error</p>
+                                                    </span>
+                                                    <span class="col-sm-6">
+                                                    <label>Estimated Prepare Time</label>
+                                                        <input type="text" th:field="*{estimatedTimeToPrepare}" class="form-control frm1" placeholder="Estimated Time" required>
+                                                        <p class="error-field" th:each="error: ${#fields.errors('estimatedTimeToPrepare')}" th:text="${error}">Validation error</p>
+                                                    </span>
+                                                    <!--<span class="col-sm-4">-->
+                                                    <!--<label style="margin-top: 10px;">Upload Image</label>-->
+                                                        <!--<input type="file" th:field="*{path}" class="frm1" >-->
+                                                    <!--</span>-->
+                                                    <span class="col-sm-12">
+                                                    <label style="margin-top: 10px;">Description</label>
+                                                        <textarea th:field="*{description}" class="form-control frm1"  placeholder="Enter Description" style="height: 150px;"></textarea>
+                                                        <p class="error-field" th:each="error: ${#fields.errors('description')}" th:text="${error}">Validation error</p>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>Upload Image</label>
+                                                <img th:src="@{'../images/dish-avatar.jpg'}" th:width="200px" class="dishImageDisplay" th:if="${dish.image == null}"/>
+                                                <img th:src="@{'data:image/jpeg;base64,'+${dish.image}}" class="dishImageDisplay" th:width="200px" th:if="${dish.image != null}"/>
+                                                <input type="file" class="dishImage frm1" name="imageFile" placeholder="Content" style="margin-top: 10px;">
+                                            </div>
+                                            <span class="col-sm-12">
+                                                <input type="submit" class=" btn btn-info" value="Add" th:value="${dish.id != null} ? 'Update' : 'Add'" style="margin-top: 5px;">
+                                                <a href="#" th:href="@{'dishes'}" th:if="${dish.id != null}" class="btn btn-primary" role="button" style="margin-top: 5px;">Add New</a>
+                                            </span >
+                                        </form>
+
+                                   <table class="table table-bordered table-striped" th:if="${not #lists.isEmpty(dishes)}"  style="margin-top: 10px;">
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Name</th>
+                                      <th colspan="3" width="30%">Action</th>
+                                    </tr>
+                                       <tr th:each="dish, dishIter : ${dishes}">
+                                           <td th:text="${dishIter.count}"> </td>
+                                           <td th:text="${dish.name}"> </td>
+                                           <td class="text-center"><a href="#" th:href="@{'/panel/dish/' + ${dish.id} + '/show'}"> <button class="btn btn-info"> <i class="mdi mdi-eye mdi-18px"></i></button> </a></td>
+                                           <td class="text-center"><a href="#" th:href="@{'/panel/dish/' + ${dish.id} + '/update'}"><button class="btn btn-info"> <i class="mdi mdi-pencil-box mdi-18px"></i></button></a></td>
+                                           <td class="text-center"><a href="#" th:href="@{'/panel/dish/' + ${dish.id} + '/delete'}"><button class="btn btn-danger"> <i class="mdi mdi-delete-forever mdi-18px"></i></button></a></td>
+                                       </tr>
+                                    </table>
+                                    <!-- end card-->
+                                </div>
+
+                                <div th:if="${dish == null}" class="card-content">
+                                    <b>Please add your restaurant before adding dishes. </b>
+                                    <br>
+                                    <a th:href="@{/panel/restaurant}" class="btn btn-info" role="button" style="margin-top: 5px">Add Restaurant</a>
+
+                                    <!-- end card-->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Container fluid  -->
+            <!-- footer -->
+            <footer class="footer"> © 2018 All rights reserved. Easy Dinein.</footer>
+            <!-- End footer -->
+        </div>
+        <!-- End Page wrapper  -->
+    </div>
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <script th:src="@{../js/lib/jquery/jquery.min.js}" src="../../static/js/lib/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script th:src="@{../js/lib/bootstrap/js/popper.min.js}" src="../../static/js/lib/bootstrap/js/popper.min.js"></script>
+    <script th:src="@{../js/lib/bootstrap/js/bootstrap.min.js}" src="../../static/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script th:src="@{../js/jquery.slimscroll.js}" src="../../static/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script th:src="@{../js/sidebarmenu.js}" src="../../static/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script th:src="@{../js/lib/sticky-kit-master/dist/sticky-kit.min.js}" src="../../static/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <script th:src="@{../js/custom.min.js}" src="../../static/js/custom.min.js"></script>
+    <script th:src="@{../js/custom-dish.js}" src="../../static/js/custom-restaurant.js"></script>
+
+</body>
+
+</html>

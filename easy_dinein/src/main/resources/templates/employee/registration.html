@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Simple Login Form</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.css}"  href="/resources/css/bootstrap.css">
+    <link rel="stylesheet" th:href="@{css/style1.css}" href="/resources/css/style1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="login-form">
+    <form th:object="${employee}" th:action="@{/emp-registration}" method="post">
+        <h2 class="text-center">Registration</h2>
+        <div class="form-group">
+            <input type="text" th:field="*{name}" class="form-control" placeholder="Full Name" >
+            <p class="error-field" th:each="error: ${#fields.errors('name')}" th:text="${error}">Validation error</p>
+        </div>
+        <div class="form-group">
+            <input type="text" th:field="*{number}" class="form-control" placeholder="Number" required="required">
+            <p class="error-field" th:each="error : ${#fields.errors('number')}" th:text="${error}">Validation error</p>
+        </div>
+        <div class="form-group">
+            <input type="text" th:field="*{email}" class="form-control" placeholder="Email" required="required">
+            <p class="error-field" th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation error</p>
+        </div>
+        <div class="form-group">
+            <input type="password" th:field="*{password}" class="form-control" placeholder="Password" required="required">
+            <p class="error-field" th:each="error : ${#fields.errors('password')}" th:text="${error}">Validation error</p>
+        </div>
+        <div class="form-group">
+            <input type="password" th:field="*{confirmPassword}" class="form-control" placeholder="Confirm Password" required="required">
+            <p class="error-field" th:each="error : ${#fields.detailedErrors('global')}" th:text="${error}">Validation error</p>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </div>
+    </form>
+    <p class="text-center"><a th:href="@{/emp-login}" href="#">Log In</a></p>
+</div>
+</body>
+</html>

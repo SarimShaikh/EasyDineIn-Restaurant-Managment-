@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{../images/favicon.png}" href="../../static/images/favicon.png">
+    <title>Panel - Restaurant</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" th:href="@{../css/lib/bootstrap/bootstrap.min.css}"  href="../../static/css/lib/bootstrap/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link th:href="@{../css/bootstrap.min.css}" href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{../css/helper.css}" href="../../static/css/helper.css" rel="stylesheet">
+    <link th:href="@{../css/style.css}" href="../../static/css/style.css" rel="stylesheet">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+    <!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style type="text/css">
+    .frm1{
+        border-radius: 5px;
+    }
+
+</style>
+</head>
+
+<body class="fix-header fix-sidebar">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper">
+        <div th:replace="pannel/fragments/header :: header" >
+        </div>
+        <!-- End header header -->
+        <!-- Left Sidebar  -->
+        <div th:replace="pannel/fragments/sidebar :: sidebar" >
+        </div>
+        <!-- End Left Sidebar  -->
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+            <!-- Bread crumb -->
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-primary">Restaurant</h3> </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item active">Restaurant</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- End Bread crumb -->
+            <!-- Container fluid  -->
+            <div class="container-fluid">
+                <!-- Start Page Content -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-content">
+                                    <div id="restaurant-form">
+                                        <form th:object="${restaurant}" th:action="@{/panel/restaurant}" method="post" enctype="multipart/form-data">
+                                            <div class="col-sm-8">
+                                                <div class="row">
+                                                    <input type="hidden" th:field="*{id}" />
+                                                    <span class="col-sm-6">
+                                                        <label>Restaurant Name</label>
+                                                        <input type="text" th:field="*{name}" class="form-control frm1" placeholder="Title" required>
+                                                        <p class="error-field" th:each="error: ${#fields.errors('name')}" th:text="${error}">Validation error</p>
+                                                    </span>
+                                                    <span class="col-sm-6">
+                                                        <label>Contact No.</label>
+                                                        <input type="text" th:field="*{contactNumber}" class="form-control frm1" placeholder="Contact" required>
+                                                        <p class="error-field" th:each="error: ${#fields.errors('contactNumber')}" th:text="${error}">Validation error</p>
+                                                    </span>
+                                                    <span class="col-sm-12">
+                                                        <label style="margin-top: 10px;">Address/Location</label>
+                                                        <textarea th:field="*{address}" class="form-control frm1" placeholder="Address" style="height: 150px;"></textarea>
+                                                         <p class="error-field" th:each="error: ${#fields.errors('address')}" th:text="${error}">Validation error</p>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+
+                                            <span class="col-sm-12">
+                                                <label>Upload Image</label>
+                                                <img th:src="@{'../images/building-avatar.jpg'}" th:width="200px" class="restaurantImageDisplay"  th:if="${restaurant.image == null}"/>
+                                                <img th:src="@{'data:image/jpeg;base64,'+${restaurant.image}}" class="restaurantImageDisplay" th:width="200px" th:if="${restaurant.image != null}"/>
+                                                <input type="file" class="restaurantImage frm1" name="imageFile" placeholder="Content" style="margin-top: 10px;">
+                                            </span>
+                                            </div>
+
+                                            <span class="col-sm-12">
+                                                <input type="submit" class=" btn btn-info" value="Register" th:value="${restaurant.id != null} ? 'Update' : 'Register'" style="margin-top: 5px;">
+                                                <a href="#" th:href="@{'restaurant/' + ${restaurant.id} + '/delete'}" th:if="${restaurant.id != null}" class="btn btn-danger" role="button" style="margin-top: 5px;">Delete</a>
+                                            </span >
+
+                                        </form>
+                                    </div>
+                                            
+           <!--<table class="table table-bordered table-striped"  th:if="${not #lists.isEmpty(restaurants)}" style="margin-top: 10px;">-->
+            <!--<tr>-->
+               <!--<th class="text-center">Sno:</th>-->
+               <!--<th class="text-center">Name</th>-->
+               <!--<th class="text-center">Contact</th>-->
+               <!--<th class="text-center">Image</th>-->
+               <!--<th class="text-center">Address</th>-->
+               <!--<th colspan="3" class="text-center">Action</th>-->
+                                                        <!---->
+               <!--</tr>-->
+
+               <!--<tr th:each="restaurant : ${restaurants}">-->
+
+                  <!--<td class="text-center" th:text="${restaurant.id}">334 </td>-->
+                  <!--<td class="text-center" th:text="${restaurant.name}">gucamole </td>-->
+                  <!--<td class="text-center" th:text="${restaurant.contactNumber}"> 1200</td>-->
+                  <!--<td> </td>-->
+                  <!--<td class="text-center" th:text="${restaurant.address}">20min </td>-->
+
+                  <!--<td class="text-center"><a href="#" th:href="@{'/restaurant/' + ${restaurant.id} + '/show'}"> <button class="btn btn-info"> <span class="glyphicon glyphicon-eye-open"></span></button> </a></td>-->
+                  <!--<td class="text-center"><a href="#" th:href="@{'/restaurant/' + ${restaurant.id} + '/update'}"><button class="btn btn-info"> <span class="glyphicon glyphicon-edit"></span></button></a></td>-->
+                  <!--<td class="text-center"><a href="#" th:href="@{'/restaurant/' + ${restaurant.id} + '/delete'}"><button class="btn btn-danger"> <span class="glyphicon glyphicon-remove"></span></button></a></td>-->
+
+               <!--</tr>-->
+                                                    <!---->
+               <!--</table>-->
+
+
+                                            
+                                        
+
+
+                                         
+                                        <!-- end card-->                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End PAge Content -->
+            </div>
+            <!-- End Container fluid  -->
+            <!-- footer -->
+            <footer class="footer"> © 2018 All rights reserved. Easy Dinein</footer>
+            <!-- End footer -->
+        </div>
+        <!-- End Page wrapper  -->
+    </div>
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <script th:src="@{../js/lib/jquery/jquery.min.js}" src="../../static/js/lib/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script th:src="@{../js/lib/bootstrap/js/popper.min.js}" src="../../static/js/lib/bootstrap/js/popper.min.js"></script>
+    <script th:src="@{../js/lib/bootstrap/js/bootstrap.min.js}" src="../../static/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script th:src="@{../js/jquery.slimscroll.js}" src="../../static/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script th:src="@{../js/sidebarmenu.js}" src="../../static/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script th:src="@{../js/lib/sticky-kit-master/dist/sticky-kit.min.js}" src="../../static/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <script th:src="@{../js/custom.min.js}" src="../../static/js/custom.min.js"></script>
+    <script th:src="@{../js/custom-restaurant.js}" src="../../static/js/custom-restaurant.js"></script>
+
+</body>
+
+</html>

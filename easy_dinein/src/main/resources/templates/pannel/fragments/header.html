@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{../images/favicon.png}" href="../../../static/images/favicon.png">
+
+    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" th:href="@{../css/lib/bootstrap/bootstrap.min.css}"  href="../../../static/css/lib/bootstrap/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link th:href="@{../css/helper.css}" href="../../../static/css/helper.css" rel="stylesheet">
+    <link th:href="@{../css/style.css}" href="../../../static/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+    <!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style type="text/css">
+    .frm1{
+        border-radius: 5px;
+    }
+</style>
+</head>
+
+<body class="fix-header fix-sidebar">
+
+        <div th:fragment="header">
+        <div class="header">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- Logo -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="../index.html">
+                        <!-- Logo icon -->
+                        <!--<b><img src="../images/logo.png" alt="homepage" class="dark-logo" /></b>-->
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span><img src="../images/side-logo-small.png" alt="homepage" class="dark-logo" /></span>
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <div class="navbar-collapse">
+                    <!-- toggle and nav items -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+
+                    </ul>
+                    <!-- User profile and search -->
+                    <ul class="navbar-nav my-lg-0">
+                        <!-- Comment -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
+        								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+        							</a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">Notifications</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>This is title</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-success btn-circle m-r-10"><i class="ti-calendar"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>This is another title</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-info btn-circle m-r-10"><i class="ti-settings"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>This is title</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span>
+                                                </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-primary btn-circle m-r-10"><i class="ti-user"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>This is another title</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item" style="padding-top: 17px; padding-bottom: 17px; padding-left: 25px; padding-right: 5px">
+                            <a th:href="@{/emp-logout}"><i class="fa fa-power-off"></i> Logout</a>
+                        </li>
+                        <!-- Profile -->
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End header header -->
+
+
+        <!-- All Jquery -->
+        <script th:src="@{../js/lib/jquery/jquery.min.js}" src="../../../static/js/lib/jquery/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script th:src="@{../js/lib/bootstrap/js/popper.min.js}" src="../../../static/js/lib/bootstrap/js/popper.min.js"></script>
+        <script th:src="@{../js/lib/bootstrap/js/bootstrap.min.js}" src="../../../static/js/lib/bootstrap/js/bootstrap.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script th:src="@{../js/jquery.slimscroll.js}" src="../../../static/js/jquery.slimscroll.js"></script>
+        <!--Menu sidebar -->
+        <script th:src="@{../js/sidebarmenu.js}" src="../../../static/js/sidebarmenu.js"></script>
+        <!--stickey kit -->
+        <script th:src="@{../js/lib/sticky-kit-master/dist/sticky-kit.min.js}" src="../../../static/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+        <!--Custom JavaScript -->
+        <script th:src="@{../js/custom.min.js}" src="../../../static/js/custom.min.js"></script>
+
+
+        </div>
+
+</body>
+</html>

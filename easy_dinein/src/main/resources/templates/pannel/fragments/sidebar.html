@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{../images/favicon.png}" href="../../static/images/favicon.png">
+
+    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" th:href="@{../css/lib/bootstrap/bootstrap.min.css}"  href="../../static/css/lib/bootstrap/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link th:href="@{../css/helper.css}" href="../../static/css/helper.css" rel="stylesheet">
+    <link th:href="@{../css/style.css}" href="../../static/css/style.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+    <!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style type="text/css">
+    .frm1{
+        border-radius: 5px;
+    }
+</style>
+</head>
+
+<body class="fix-header fix-sidebar">
+
+
+    <!-- Left Sidebar  -->
+    <div th:fragment="sidebar">
+        <div class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav" style="">
+                    <ul id="sidebarnav">
+                        <li class="nav-devider"></li>
+                        <li><a class="has-arrow" th:href="@{/panel/dashboard}"><i class="fa fa-tachometer"></i>Dashboard</a></li>
+                        <li><a class="has-arrow" th:href="@{/panel/restaurant}"><i class="fa fa-building"></i>Restaurant</a></li>
+                        <li><a class="has-arrow" th:href="@{/panel/dishes}"><i class="fa fa-cutlery"></i>Dishes</a></li>
+                        <li><a class="has-arrow" th:href="@{/panel/order}"><i class="fa fa-suitcase"></i>Orders <span class="label label-rouded label-warning pull-right">6</span></a></li>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+               <!-- End Sidebar scroll-->
+        </div>
+
+
+    <!-- All Jquery -->
+    <script th:src="@{../js/lib/jquery/jquery.min.js}" src="../../static/js/lib/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script th:src="@{../js/lib/bootstrap/js/popper.min.js}" src="../../static/js/lib/bootstrap/js/popper.min.js"></script>
+    <script th:src="@{../js/lib/bootstrap/js/bootstrap.min.js}" src="../../static/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script th:src="@{../js/jquery.slimscroll.js}" src="../../static/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script th:src="@{../js/sidebarmenu.js}" src="../../static/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script th:src="@{../js/lib/sticky-kit-master/dist/sticky-kit.min.js}" src="../../static/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <script th:src="@{../js/custom.min.js}" src="../../static/js/custom.min.js"></script>
+
+    </div>
+
+</body>
+</html>
